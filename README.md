@@ -1,0 +1,1 @@
+A shell is a type of computer program called a command-line interpreter that lets Linux and Unix users control their operating systems with command-line interfaces. Shells allows users to communicate efficiently and directly with their operating systems.
