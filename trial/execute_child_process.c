@@ -11,9 +11,11 @@ void execute_child(char *full_path, char *args[])
     }
     else if (pid == 0)
     {
-        execve(full_path, args, environ);
-        perror("Error executing command");
-        exit(EXIT_FAILURE);
+        if (execve(full_path, args, environ) == -1)
+        {
+            perror("Error executing command");
+            exit(EXIT_FAILURE);
+        }
     }
     else
     {
