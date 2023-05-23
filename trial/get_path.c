@@ -33,8 +33,7 @@ void get_path(char *args[], char *command)
         free(full_path);
     }
     if (!command_executed)
-    {
         perror("Error executing command");
-    }
+
     free(dup_path);
 }

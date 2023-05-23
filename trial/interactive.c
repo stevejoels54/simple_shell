@@ -3,7 +3,6 @@
 void interactive_mode(void)
 {
     char *line = NULL;
-    char *line_copy = NULL;
     size_t len = 0;
     ssize_t read;
 
@@ -26,18 +25,14 @@ void interactive_mode(void)
                 exit(EXIT_FAILURE);
             }
         }
+        line = strtok(line, "\n");
 
-        line_copy = strdup(line);
-        line_copy = strtok(line_copy, "\n");
-
-        if (strcmp(line_copy, "exit") == 0)
+        if (strcmp(line, "exit") == 0)
         {
             free(line);
-            free(line_copy);
             exit(EXIT_SUCCESS);
         }
-        execute_command(line_copy);
-        free(line_copy);
+        execute_command(line);
     }
     free(line);
 }
