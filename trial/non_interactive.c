@@ -1,6 +1,6 @@
 #include "main.h"
 
-void non_interactive_mode(void)
+void non_interactive_mode(char *progname)
 {
     char *line = NULL;
     size_t len = 0;
@@ -16,7 +16,7 @@ void non_interactive_mode(void)
 
     line = strtok(line, "\n");
 
-    execute_command(line);
+    execute_command(line, progname);
 
     free(line);
 }

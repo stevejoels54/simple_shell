@@ -13,7 +13,7 @@ void execute_child(char *full_path, char *args[])
     {
         if (execve(full_path, args, environ) == -1)
         {
-            perror("Error executing command");
+            print_error(args[0], "command not found", 1);
             exit(EXIT_FAILURE);
         }
     }

@@ -33,7 +33,7 @@ void get_path(char *args[], char *command)
         free(full_path);
     }
     if (!command_executed)
-        perror("Error executing command");
+        print_error("sh", args[0], 1);
 
     free(dup_path);
 }
