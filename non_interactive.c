@@ -19,7 +19,7 @@ void non_interactive_mode(char *progname)
 	if (read == -1)
 	{
 		free(line);
-		return;
+		exit(EXIT_SUCCESS);
 	}
 
 	line = strtok(line, "\n");
