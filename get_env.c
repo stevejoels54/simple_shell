@@ -1,0 +1,37 @@
+#include "main.h"
+
+/**
+ * _getenv - Get te value of an enviroment variable.
+ *
+ * @name: Name of the environment variable.
+ *
+ * Return: Pointers to the value of the environment variable,
+ * or NULL if not found.
+ *
+ */
+
+char *_getenv(const char *name)
+{
+	int i;
+
+	for (i = 0; environ[i] != NULL; i++)
+	{
+		char *env_var = environ[i];
+		char *env_name = env_var;
+		const char *cmp_name = name;
+
+		while (*env_name != '\0' && *cmp_name != '\0' && *env_name == *cmp_name)
+
+		{
+			env_name++;
+			cmp_name++;
+		}
+
+		if (*env_name == '=' && *cmp_name == '\0')
+		{
+			return (env_var + 1);
+		}
+	}
+
+	return (NULL);
+}
