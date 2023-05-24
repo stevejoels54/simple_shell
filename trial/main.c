@@ -1,6 +1,6 @@
 #include "main.h"
 
-int main(void)
+int main(int argc, char *argv[])
 {
     if (isatty(STDIN_FILENO))
     {
@@ -8,7 +8,10 @@ int main(void)
     }
     else
     {
-        non_interactive_mode("./shell");
+        if (argc > 0)
+        {
+            non_interactive_mode(argv[0]);
+        }
     }
 
     return 0;

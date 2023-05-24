@@ -3,7 +3,7 @@
 /**
  * execute_child - Execute a child process.
  *
- * @full_path: Full pathhhhhh to the executable file
+ * @full_path: Full path to the executable file
  * @args: Array of arguments for the executable.
  *
  * Function forks a new process and executes the specified executable files.
@@ -25,7 +25,7 @@ void execute_child(char *full_path, char *args[])
 	{
 		if (execve(full_path, args, environ) == -1)
 		{
-			perror("Error executing command");
+			print_error(args[0], "command not found", 1);
 			exit(EXIT_FAILURE);
 		}
 	}

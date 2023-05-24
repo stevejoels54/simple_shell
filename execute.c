@@ -4,6 +4,7 @@
  * execute_command - Execute a command.
  *
  * @command: Command to be executed.
+ * @progname: Name of the program.
  *
  * This function parses the command into arguments,
  * checks if the command is executable,
@@ -12,12 +13,16 @@
  * in the directories listed in thhe PATH environment variable.
  */
 
-void execute_command(char *command)
+void execute_command(char *command, char *progname)
 {
 	char *args[64];
 	int argCount = 0;
+	char *token = NULL;
 
-	char *token = strtok(command, " \t\n");
+	if (!command)
+		return;
+
+	token = strtok(command, " \t\n");
 
 	while (token != NULL)
 	{
@@ -25,7 +30,6 @@ void execute_command(char *command)
 		argCount++;
 		token = strtok(NULL, " \t\n");
 	}
-
 	args[argCount] = NULL;
 
 	if (access(args[0], X_OK) == 0)
@@ -35,6 +39,8 @@ void execute_command(char *command)
 	}
 	else
 	{
-		get_path(args, args[0]);
+		get_path(args, args[0], progname);
 	}
+
 }
+

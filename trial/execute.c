@@ -5,7 +5,6 @@ void execute_command(char *command, char *progname)
     char *args[64];
     int argCount = 0;
     char *token = NULL;
-    // int command_executed = 0;
 
     if (!command)
         return;
@@ -24,7 +23,6 @@ void execute_command(char *command, char *progname)
     if (access(args[0], X_OK) == 0)
     {
         execute_child(args[0], args);
-        // command_executed = 1;
         return;
     }
     else
@@ -32,13 +30,4 @@ void execute_command(char *command, char *progname)
         get_path(args, args[0], progname);
     }
 
-    // if (access(args[0], X_OK) != 0 && !command_executed)
-    // {
-    //     get_path(args, args[0], progname);
-    // }
-    
-    // if (!command_executed && access(args[0], X_OK) == 0)
-    // {
-    //     print_error(progname, args[0], 1);
-    // }
 }
