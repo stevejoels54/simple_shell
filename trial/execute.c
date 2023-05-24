@@ -28,13 +28,13 @@ void execute_command(char *command, char *progname)
         return;
     }
 
-    else if (!command_executed)
-    {
-        print_error(progname, args[0], 1);
-    }
-
-    else
+    if (access(args[0], X_OK) != 0 && !command_executed)
     {
         get_path(args, args[0]);
+    }
+    
+    if (!command_executed && access(args[0], X_OK) == 0)
+    {
+        print_error(progname, args[0], 1);
     }
 }
