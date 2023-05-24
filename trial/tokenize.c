@@ -1,5 +1,7 @@
 #include "main.h"
 
+void free_args(char **args, int len);
+
 char **tokenize_input(char *input_line)
 {
     char **args = NULL;
