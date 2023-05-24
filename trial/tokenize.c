@@ -40,6 +40,9 @@ void free_args(char **args, int len)
     int i;
 
     for (i = 0; i < len; i++)
+    {
         free(args[i]);
+        args[i] = NULL;
+    }
     free(args);
 }
