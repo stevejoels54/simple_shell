@@ -8,7 +8,7 @@ int main(void)
     }
     else
     {
-        non_interactive_mode("./shell");
+        non_interactive_mode();
     }
 
     return 0;
