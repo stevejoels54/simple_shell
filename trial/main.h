@@ -17,7 +17,7 @@
 extern char **environ;
 void print_error(const char *program_name, const char *failed_command, int error_number);
 void execute_child(char *full_path, char *args[]);
-void get_path(char *args[], char *command);
+void get_path(char *args[], char *command, char *progname);
 char *_getenv(const char *name);
 void execute_command(char *command, char *progname);
 void interactive_mode(void);

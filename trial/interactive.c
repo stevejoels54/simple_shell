@@ -36,7 +36,7 @@ void interactive_mode(void)
             free(line_copy);
             exit(EXIT_SUCCESS);
         }
-        execute_command(token, "sh");
+        execute_command(token, "interactive");
         free(line_copy);
         line_copy = NULL;
     }
