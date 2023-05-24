@@ -2,29 +2,42 @@
 
 char **tokenize_input(char *input_line)
 {
-    int argCount;
-    char *token;
-    char **args = malloc(64 * sizeof(char *));
-    if (args == NULL)
-    {
-        perror("malloc");
-        exit(EXIT_FAILURE);
-    }
+    char **args = NULL;
+    char *token = NULL;
+    int i = 0;
 
-    argCount = 0;
-    if (input_line != NULL)
-        input_line = strdup(input_line);
-    else
-        return NULL;
+    args = malloc(sizeof(char *));
+    if (args == NULL)
+        return (NULL);
 
     token = strtok(input_line, " \t\n");
-    while (token != NULL && argCount < 63)
+    while (token != NULL)
     {
-        args[argCount++] = token;
+        args[i] = strdup(token);
+        if (args[i] == NULL)
+        {
+            free_args(args, i);
+            return (NULL);
+        }
+        i++;
+        args = realloc(args, (i + 1) * sizeof(char *));
+        if (args == NULL)
+        {
+            free_args(args, i);
+            return (NULL);
+        }
         token = strtok(NULL, " \t\n");
     }
+    args[i] = NULL;
 
-    args[argCount] = NULL;
-    return args;
+    return (args);
 }
 
+void free_args(char **args, int len)
+{
+    int i;
+
+    for (i = 0; i < len; i++)
+        free(args[i]);
+    free(args);
+}
