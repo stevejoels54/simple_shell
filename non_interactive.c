@@ -26,7 +26,6 @@ void non_interactive_mode(char *progname)
 	}
 
 	line_copy = strdup(line);
-
 	command = strtok(line_copy, "\n");
 
 	if (strcmp(command, "exit") == 0)
@@ -35,11 +34,11 @@ void non_interactive_mode(char *progname)
 		free(line_copy);
 		exit(EXIT_SUCCESS);
 	}
-
 	execute_command(command, progname);
-
 	free(line);
 	free(line_copy);
+	line_copy = NULL;
+	line = NULL;
 }
 
 
