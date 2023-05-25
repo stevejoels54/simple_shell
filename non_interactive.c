@@ -21,6 +21,7 @@ void non_interactive_mode(char *progname)
 	if (read == -1)
 	{
 		free(line);
+		free(line_copy);
 		exit(EXIT_SUCCESS);
 	}
 
