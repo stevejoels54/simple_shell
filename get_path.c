@@ -41,10 +41,10 @@ void get_path(char *args[], char *command, char *progname)
 		}
 		free(full_path);
 	}
-	if (!command_executed && strcmp(progname, "interactive") == 0)
-		print_error("sh", args[0], 1);
-	else
+	if (!command_executed)
+	{
 		print_error(progname, args[0], 1);
+	}
 	free(dup_path);
 }
 

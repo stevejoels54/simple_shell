@@ -11,8 +11,10 @@
 void non_interactive_mode(char *progname)
 {
 	char *line = NULL;
+	char *line_copy = NULL;
 	size_t len = 0;
 	ssize_t read;
+	char *command = NULL;
 
 	read = getline(&line, &len, stdin);
 
@@ -22,10 +24,21 @@ void non_interactive_mode(char *progname)
 		exit(EXIT_SUCCESS);
 	}
 
-	line = strtok(line, "\n");
+	line_copy = strdup(line);
 
-	execute_command(line, progname);
+	command = strtok(line_copy, "\n");
+
+	if (strcmp(command, "exit") == 0)
+	{
+		free(line);
+		free(line_copy);
+		exit(EXIT_SUCCESS);
+	}
+
+	execute_command(command, progname);
 
 	free(line);
+	free(line_copy);
 }
+
 
